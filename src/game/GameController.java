@@ -63,17 +63,17 @@ public class GameController extends Controller {
                 System.out.println("button seven works");
                 gamemodel.setStone(7);
             }
-            gamepanel.changePlayerText(gamemodel.getCurrentUsername() + ", Du bist dran!");
-            gamemodel.printField();
+            //gamepanel.changePlayerText(gamemodel.getCurrentUsername() + ", Du bist dran!");
+            //gamemodel.printField();
         }
-        if(gamemodel.checkWin() == true){
+        /*if(gamemodel.checkWin() == true){
             gamepanel.changePlayerText(gamemodel.getCurrentUsername() + ", Du hast gewonnen!");  
             if(gamemodel.timeattack == true){
                 gamemodel.endTimer();
             } 
             //gamemodel.setgameINVIS();
             //gom.setgoVIS();
-        }
+        }*/
     }
 
 }

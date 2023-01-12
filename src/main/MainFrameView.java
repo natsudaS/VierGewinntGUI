@@ -21,7 +21,7 @@ public class MainFrameView {
         GameOverPanel gameoverpan = new GameOverPanel();
 
     public MainFrameView() throws IOException {
-        //System.out.println("MainFrameView created");
+        System.out.println("MainFrameView created");
         gamepanel = new GamePanel();
         mainframe.setSize(600, 400);
         mainframe.setVisible(true);

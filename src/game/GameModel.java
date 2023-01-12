@@ -12,9 +12,9 @@ public class GameModel {
     List<User> userList;
     ComPlayer com;
 
-
     boolean singleplayer = false;
     boolean timeattack = false;
+    boolean comturn = false;
     int [][] field = new int [6][7];
     int currPlayer = 0;
     int check; 
@@ -41,7 +41,7 @@ public class GameModel {
 
     //visibility
     public void setgameVIS() {
-        //System.out.println("gp vis");
+        System.out.println("gp vis");
         gameview.setVisible(true);
         startGame();
     }
@@ -54,19 +54,28 @@ public class GameModel {
     //game start
     private void startGame(){
         initializeField();
+
+        if(timeattack == true){
+            //System.out.println("called timer");
+            gameview.changeCounterText("Time Attack Mode");
+            startTimer(500);
+        }
+
         if(userList.size() == 1){
             singleplayer = true;
+            System.out.println("singleplayer: "+singleplayer);
             com = new ComPlayer();
             userList.add(com);   
         }
+
         System.out.println("userList before shuffel: "+userList.get(0).getUsername()+" "+userList.get(1).getUsername());
         Collections.shuffle(userList);
         System.out.println("userList after shuffel: "+userList.get(0).getUsername()+" "+userList.get(1).getUsername());
+        
         if(singleplayer == true && userList.get(0).getUsername().equals("ComSpieler")){
             setStone(0);
-        }
-        if(timeattack == true && counter != 0){
-            startTimer(500);
+        } else {
+            gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
         }
     }
 
@@ -95,9 +104,12 @@ public class GameModel {
 
         if(singleplayer==true && getCurrentUsername().equals("ComSpieler")){
             com.updateField(field);
+            gameview.changePlayerText(getCurrentUsername() + " setzt!");
             System.out.println("com setzt");
+            comturn = true;
             c = com.setStone();
         } else {
+            System.out.println("spieler hat gesetzt");
             c = column-1;
         }
 
@@ -117,24 +129,53 @@ public class GameModel {
             System.out.println("Da kannst du nicht setzen!!!");
         }
 
-        if (checkWin() == false){
-            currPlayer++;
-        } else {
-            System.out.println("Spieler " + userList.get(p-1).getUsername() + " gewinnt.");
-        }
-
         if(timeattack==true){
             endTimer();
-            startTimer(0);
+            startTimer(500);
         }
-        imgPan.repaintField();
+
+        if(comturn == true){
+            Timer delay = new Timer();
+            TimerTask delayTask = new TimerTask(){
+                @Override
+                public void run(){
+                    imgPan.repaintField();
+                    if (checkWin() == false){
+                        currPlayer++;
+                        gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
+                    } else {
+                        System.out.println("Spieler " + userList.get(p-1).getUsername() + " gewinnt.");
+                        gameview.changePlayerText(getCurrentUsername() + " gewinnt!");
+                    }
+                    delay.cancel();
+                }
+            };
+            delay.schedule(delayTask, 1000);
+        } else {
+            imgPan.repaintField();
+            System.out.println(checkWin());
+            if (checkWin() == false){
+                currPlayer++;
+                gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
+                if (singleplayer == true && comturn == false){
+                    setStone(0);
+                } 
+            } else {
+                System.out.println("Spieler " + userList.get(p-1).getUsername() + " gewinnt.");
+                gameview.changePlayerText(getCurrentUsername() + " gewinnt!");
+            }
+            
+        }
+
+        printField();
+        comturn = false;
     }
 
     public int[][] getField() {
         return field;
     }
 
-    public void printField(){
+    private void printField(){
         for(int i=0; i<field.length; i++){ 
             for(int j=0; j<field.length+1; j++){ 
                 System.out.print(field[i][j]); 
@@ -156,8 +197,9 @@ public class GameModel {
     public void setCounter(int sec){
         System.out.println("counter set");
         timeattack = true;
-        gameview.changeCounterText("Time Attack Mode");
+        System.out.println("timeattack: "+timeattack);
         counter = sec;
+        System.out.println("counter: "+counter);
     }
 
     public void startTimer(int delay){
@@ -183,7 +225,7 @@ public class GameModel {
                     currPlayer++;
                     gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
                     endTimer();
-                    //startTimer(0);
+                    startTimer(500);
                 }
             }
         };
@@ -261,8 +303,6 @@ public class GameModel {
             }  
         } 
         
-        //check countWin: when countWin is equal to 4 it means there are 4 stones placed next to each other in the checked direction 
-        
         if(countWin==4){        
             check=4; 
             countWin=0;            
@@ -292,9 +332,7 @@ public class GameModel {
             } 
         } 
         
-         //check countWin: when countWin is equal to 4 it means there are 4 stones placed next to each other in the checked direction 
-        
-         if(countWin==4){        
+        if(countWin==4){        
             check=4; 
             countWin=0;            
             return true;         
@@ -320,8 +358,6 @@ public class GameModel {
                 countWin=0; 
             }        
         } 
-        
-        //check countWin: when countWin is equal to 4 it means there are 4 stones placed next to each other in the checked direction 
         
         if(countWin==4){        
             check=4; 
@@ -349,8 +385,6 @@ public class GameModel {
                 countWin=0; 
             } 
         } 
-        
-        //check countWin: when countWin is equal to 4 it means there are 4 stones placed next to each other in the checked direction 
         
         if(countWin==4){        
             check=4; 

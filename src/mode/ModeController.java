@@ -39,16 +39,13 @@ public class ModeController extends Controller {
             System.out.println("classic mode");
             mm.setmodeINVIS();
             gm.setgameVIS();
-            gp.changeCounterText("classic mode");
         }
 
         if(buttonname.equals("timeattack")) {
             System.out.println("time attack mode");
             mm.setmodeINVIS();
-            gm.setgameVIS();
             gm.setCounter(10);
-            gp.changeCounterText("time attack mode");
-            gm.startTimer(1000);  
+            gm.setgameVIS();    
         }
     }
     

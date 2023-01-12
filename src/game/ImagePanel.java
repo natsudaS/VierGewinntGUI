@@ -19,7 +19,7 @@ public class ImagePanel extends JPanel {
     public ImagePanel() throws IOException{
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER));
-        BufferedImage img = ImageIO.read(new File("home\\sommerfeldria15\\GitHub\\ub3\\src\\game\\FeldT.png"));
+        BufferedImage img = ImageIO.read(new File("FeldT.png"));
         JLabel pic = new JLabel(new ImageIcon(img));
         add(pic);
     }
@@ -112,12 +112,12 @@ public class ImagePanel extends JPanel {
         if(player == 1){ 
             Point newStone = new Point(x,y);
             stoneListRed.add(newStone);
-            System.out.println("new stone added to red");
+            //System.out.println("new stone added to red");
         } else
         if(player == 2){
             Point newStone = new Point(x,y);
             stoneListYell.add(newStone);
-            System.out.println("new stone added to yellow");
+            //System.out.println("new stone added to yellow");
         }
     }
 }

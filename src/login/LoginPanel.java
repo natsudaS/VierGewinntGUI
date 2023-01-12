@@ -26,7 +26,7 @@ public class LoginPanel extends Observer{
 	JLabel loginok = new JLabel("Login erfolgreich");
 
     public LoginPanel(){
-        //System.out.println("loginPanel created");
+        System.out.println("loginPanel created");
         // the normal panel stuff
 		this.add(logintext);
         this.add(loginfield);

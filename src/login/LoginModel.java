@@ -22,12 +22,12 @@ public class LoginModel {
 
     //visibility 
     public void setloginVIS() {
-        //System.out.println("lp vis");
+        System.out.println("lp vis");
         loginview.setVisible(true);
     }
 
     public void setloginINVIS() {
-        //System.out.println("lp invis");
+        System.out.println("lp invis");
         loginview.setVisible(false);
     }
 

@@ -9,6 +9,7 @@ public class ComPlayer extends User {
     List<Integer> cols = new ArrayList<>();
     String comMode;
     int [][] field;
+    int col;
     
     
     public ComPlayer(){
@@ -28,7 +29,7 @@ public class ComPlayer extends User {
     }
 
     public int setStone(){
-        int col = 0;
+        col = 0;
         Collections.shuffle(cols);
         col = cols.get(0);
         return col;
