@@ -19,7 +19,7 @@ public class ImagePanel extends JPanel {
     public ImagePanel() throws IOException{
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER));
-        BufferedImage img = ImageIO.read(new File("C:\\Users\\Ria\\Documents\\GitHub\\vier_gewinnt\\src\\game\\FeldT.png"));
+        BufferedImage img = ImageIO.read(new File("home\\sommerfeldria15\\GitHub\\ub3\\src\\game\\FeldT.png"));
         JLabel pic = new JLabel(new ImageIcon(img));
         add(pic);
     }
