@@ -166,7 +166,6 @@ public class GameModel {
             }
             
         }
-
         printField();
         comturn = false;
     }

@@ -13,14 +13,15 @@ public class ImagePanel extends JPanel {
     //vars
     GameModel gm;
     List<Point> stoneListRed = new ArrayList<>();
-    List<Point> stoneListYell = new ArrayList<>();
-    int stoneSize = 16;
+    List<Point> stoneListGreen = new ArrayList<>();
+    int stoneSize = 35;
 
     public ImagePanel() throws IOException{
         super();
         setLayout(new FlowLayout(FlowLayout.CENTER));
         BufferedImage img = ImageIO.read(new File("FeldT.png"));
-        JLabel pic = new JLabel(new ImageIcon(img));
+        Image image = img.getScaledInstance(320, 276, Image.SCALE_SMOOTH);
+        JLabel pic = new JLabel(new ImageIcon(image));
         add(pic);
     }
 
@@ -37,8 +38,8 @@ public class ImagePanel extends JPanel {
             g.setColor(Color.RED);
             g.fillOval(p.x-stoneSize/2, p.y-stoneSize/2, stoneSize, stoneSize);
         }
-        for (Point p : stoneListYell){ //sorgt dafür, dass alle punkte der liste zu sehen sind
-            g.setColor(Color.YELLOW);
+        for (Point p : stoneListGreen){ //sorgt dafür, dass alle punkte der liste zu sehen sind
+            g.setColor(Color.BLUE);
             g.fillOval(p.x-stoneSize/2, p.y-stoneSize/2, stoneSize, stoneSize);
         }
     }
@@ -64,45 +65,45 @@ public class ImagePanel extends JPanel {
         int value = 0;
         if(id.equals("x")){
             if(index == 0){
-                value = 224;
+                value = 164;
             }
             if(index == 1){
-                value = 247;
+                value = 210;
             }
             if(index == 2){
-                value = 270;
+                value = 254;
             }
             if(index == 3){
-                value = 293;
+                value = 299;
             }
             if(index == 4){
-                value = 315;
+                value = 345;
             }
             if(index == 5){
-                value = 338;
+                value = 390;
             }
             if(index == 6){
-                value = 361;
+                value = 436;
             }
         } else
         if(id.equals("y")){
             if(index == 0){
-                value = 17;
+                value = 30;
             }
             if(index == 1){
-                value = 40;
+                value = 75;
             }
             if(index == 2){
-                value = 63;
+                value = 121;
             }
             if(index == 3){
-                value = 86;
+                value = 168;
             }
             if(index == 4){
-                value = 109;
+                value = 214;
             }
             if(index == 5){
-                value = 132;
+                value = 259;
             }
         }
         return value;
@@ -116,8 +117,8 @@ public class ImagePanel extends JPanel {
         } else
         if(player == 2){
             Point newStone = new Point(x,y);
-            stoneListYell.add(newStone);
-            //System.out.println("new stone added to yellow");
+            stoneListGreen.add(newStone);
+            //System.out.println("new stone added to green");
         }
     }
 }

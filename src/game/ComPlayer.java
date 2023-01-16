@@ -28,6 +28,11 @@ public class ComPlayer extends User {
         this.field = field;
     }
 
+    public int checkField(){
+        
+        return 0;
+    }
+
     public int setStone(){
         col = 0;
         Collections.shuffle(cols);

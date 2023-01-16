@@ -25,25 +25,30 @@ public class GamePanel extends Observer{
     JPanel centerPanel = new JPanel();
         ImagePanel imagePanel;
         JPanel buttonPanel = new JPanel();
-    JPanel southPanel = new JPanel();
+    
 
     public GamePanel() throws IOException {
         //Layout
         imagePanel  = new ImagePanel();
         setLayout(new BorderLayout());
-        setSize(600,400);
+        setSize(new Dimension(600,650));
         setVisible(false);
 
-        northPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        northPanel.setLayout(new GridLayout(2,1));
+        northPanel.add(counterText);
         northPanel.add(playerText);
+        counterText.setHorizontalAlignment(JLabel.CENTER);
+        playerText.setHorizontalAlignment(JLabel.CENTER);
 
-        centerPanel.setLayout(new GridLayout(2,1));
-        centerPanel.add(imagePanel);
-        centerPanel.add(buttonPanel);
+        centerPanel.setLayout(new BorderLayout());
+        centerPanel.add(imagePanel, BorderLayout.NORTH);
+        centerPanel.add(buttonPanel, BorderLayout.CENTER);
 
         imagePanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        imagePanel.setSize(new Dimension(600,400));
 
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        buttonPanel.setSize(new Dimension(600,100));
         buttonPanel.add(one);
         buttonPanel.add(two);
         buttonPanel.add(three);
@@ -52,12 +57,8 @@ public class GamePanel extends Observer{
         buttonPanel.add(six);
         buttonPanel.add(seven);
 
-        southPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        southPanel.add(counterText);
-
         add(northPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
-        add(southPanel, BorderLayout.SOUTH);
     }
 
     //add
