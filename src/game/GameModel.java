@@ -103,7 +103,7 @@ public class GameModel {
         int p = getCurrentPlayer(); //could be 1 or 2 
 
         if(singleplayer==true && getCurrentUsername().equals("ComSpieler")){
-            com.updateField(field);
+            com.updateField(field,currPlayer);
             gameview.changePlayerText(getCurrentUsername() + " setzt!");
             System.out.println("com setzt");
             comturn = true;

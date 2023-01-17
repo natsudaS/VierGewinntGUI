@@ -9,7 +9,10 @@ public class ComPlayer extends User {
     List<Integer> cols = new ArrayList<>();
     String comMode;
     int [][] field;
+    int currPlayer;
+    int playerNumber;
     int col;
+    List<Integer> placedStones = new ArrayList<>();
     
     
     public ComPlayer(){
@@ -24,19 +27,31 @@ public class ComPlayer extends User {
         System.out.println("com player inistialized");
     }
 
-    public void updateField(int[][] field){
+    public void updateField(int[][] field, int currPlayer){
         this.field = field;
-    }
-
-    public int checkField(){
-        
-        return 0;
+        this.currPlayer = currPlayer;
     }
 
     public int setStone(){
         col = 0;
-        Collections.shuffle(cols);
-        col = cols.get(0);
+        if(currPlayer == 0 || currPlayer == 1){ //erster Zug zufällig
+            col = setRandom();
+        } else {
+            col = computeStonePlacement();
+        }
+        placedStones.add(col);
         return col;
+    }
+
+    private int computeStonePlacement(){
+        placedStones.get(0); //vertikal+
+        for(int i = 0; i<6; i++){}
+        return 0;
+    }
+
+    private int setRandom(){
+        List<Integer> clone = cols;
+        Collections.shuffle(clone);
+        return clone.get(0);
     }
 }
