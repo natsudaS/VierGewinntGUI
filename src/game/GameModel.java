@@ -140,6 +140,7 @@ public class GameModel {
                 @Override
                 public void run(){
                     imgPan.repaintField();
+                    printField();
                     if (checkWin() == false){
                         currPlayer++;
                         gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
@@ -153,7 +154,8 @@ public class GameModel {
             delay.schedule(delayTask, 1000);
         } else {
             imgPan.repaintField();
-            System.out.println(checkWin());
+            printField();
+            System.out.println("checkWin(): "+checkWin());
             if (checkWin() == false){
                 currPlayer++;
                 gameview.changePlayerText(getCurrentUsername() + ", Du bist dran!");
@@ -166,7 +168,6 @@ public class GameModel {
             }
             
         }
-        printField();
         comturn = false;
     }
 
