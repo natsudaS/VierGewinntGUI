@@ -26,6 +26,7 @@ public class ComPlayer extends User {
     public int setStone(){
         System.out.println("com sets stone");
         col = 0;
+        int posPlayer = -1; // Define posPlayer variable
         if(currPlayer == 0){ //erster Zug, com zieht zuerst
             col = setRandom();
             playerNumber = 1;
